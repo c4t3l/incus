@@ -79,7 +79,7 @@ func (c *cmdClusterRoleAdd) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing cluster member name"))
+		return fmt.Errorf("%s", i18n.G("Missing cluster member name"))
 	}
 
 	// Extract the current value
@@ -147,7 +147,7 @@ func (c *cmdClusterRoleRemove) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing cluster member name"))
+		return fmt.Errorf("%s", i18n.G("Missing cluster member name"))
 	}
 
 	// Extract the current value
