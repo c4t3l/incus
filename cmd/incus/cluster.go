@@ -250,7 +250,7 @@ func (c *cmdClusterList) Run(cmd *cobra.Command, args []string) error {
 	}
 
 	if c.global.flagProject != "" && c.flagAllProjects {
-		return fmt.Errorf(i18n.G("Can't specify --project with --all-projects"))
+		return fmt.Errorf("%s", i18n.G("Can't specify --project with --all-projects"))
 	}
 
 	// Parse remote
@@ -273,7 +273,7 @@ func (c *cmdClusterList) Run(cmd *cobra.Command, args []string) error {
 	}
 
 	if !cluster.Enabled {
-		return fmt.Errorf(i18n.G("Server isn't part of a cluster"))
+		return fmt.Errorf("%s", i18n.G("Server isn't part of a cluster"))
 	}
 
 	// Get the cluster members
@@ -729,7 +729,7 @@ Are you really sure you want to force removing %s? (yes/no): `), name)
 	input = strings.TrimSuffix(input, "\n")
 
 	if !slices.Contains([]string{i18n.G("yes")}, strings.ToLower(input)) {
-		return fmt.Errorf(i18n.G("User aborted delete operation"))
+		return fmt.Errorf("%s", i18n.G("User aborted delete operation"))
 	}
 
 	return nil
@@ -833,7 +833,7 @@ func (c *cmdClusterEnable) Run(cmd *cobra.Command, args []string) error {
 	}
 
 	if server.Config["core.https_address"] == "" && server.Config["cluster.https_address"] == "" {
-		return fmt.Errorf(i18n.G("This server is not available on the network"))
+		return fmt.Errorf("%s", i18n.G("This server is not available on the network"))
 	}
 
 	// Check if already enabled
@@ -843,7 +843,7 @@ func (c *cmdClusterEnable) Run(cmd *cobra.Command, args []string) error {
 	}
 
 	if currentCluster.Enabled {
-		return fmt.Errorf(i18n.G("This server is already clustered"))
+		return fmt.Errorf("%s", i18n.G("This server is already clustered"))
 	}
 
 	// Enable clustering.
@@ -915,7 +915,7 @@ func (c *cmdClusterEdit) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing cluster member name"))
+		return fmt.Errorf("%s", i18n.G("Missing cluster member name"))
 	}
 
 	// If stdin isn't a terminal, read text from it
@@ -1027,7 +1027,7 @@ func (c *cmdClusterAdd) Run(cmd *cobra.Command, args []string) error {
 
 	// Determine the machine name.
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("A cluster member name must be provided"))
+		return fmt.Errorf("%s", i18n.G("A cluster member name must be provided"))
 	}
 
 	// Request the join token.
@@ -1177,7 +1177,7 @@ func (c *cmdClusterListTokens) Run(cmd *cobra.Command, args []string) error {
 	}
 
 	if !cluster.Enabled {
-		return fmt.Errorf(i18n.G("Server isn't part of a cluster"))
+		return fmt.Errorf("%s", i18n.G("Server isn't part of a cluster"))
 	}
 
 	// Get the cluster member join tokens. Use default project as join tokens are created in default project.
@@ -1274,7 +1274,7 @@ func (c *cmdClusterRevokeToken) Run(cmd *cobra.Command, args []string) error {
 	}
 
 	if !cluster.Enabled {
-		return fmt.Errorf(i18n.G("Server isn't part of a cluster"))
+		return fmt.Errorf("%s", i18n.G("Server isn't part of a cluster"))
 	}
 
 	// Get the cluster member join tokens. Use default project as join tokens are created in default project.
@@ -1382,7 +1382,7 @@ func (c *cmdClusterUpdateCertificate) Run(cmd *cobra.Command, args []string) err
 	}
 
 	if !cluster.Enabled {
-		return fmt.Errorf(i18n.G("Server isn't part of a cluster"))
+		return fmt.Errorf("%s", i18n.G("Server isn't part of a cluster"))
 	}
 
 	if !util.PathExists(certFile) {
@@ -1516,7 +1516,7 @@ func (c *cmdClusterEvacuateAction) Run(cmd *cobra.Command, args []string) error 
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing cluster member name"))
+		return fmt.Errorf("%s", i18n.G("Missing cluster member name"))
 	}
 
 	if !c.flagForce {
