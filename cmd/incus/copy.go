@@ -95,12 +95,12 @@ func (c *cmdCopy) copyInstance(conf *config.Config, sourceResource string, destR
 
 	// Make sure we have an instance or snapshot name
 	if sourceName == "" {
-		return fmt.Errorf(i18n.G("You must specify a source instance name"))
+		return fmt.Errorf("%s", i18n.G("You must specify a source instance name"))
 	}
 
 	// Don't allow refreshing without profiles.
 	if c.flagRefresh && c.flagNoProfiles {
-		return fmt.Errorf(i18n.G("--no-profiles cannot be used with --refresh"))
+		return fmt.Errorf("%s", i18n.G("--no-profiles cannot be used with --refresh"))
 	}
 
 	// If the instance is being copied to a different remote and no destination name is
@@ -112,7 +112,7 @@ func (c *cmdCopy) copyInstance(conf *config.Config, sourceResource string, destR
 
 	// Ensure that a destination name is provided.
 	if destName == "" {
-		return fmt.Errorf(i18n.G("You must specify a destination instance name"))
+		return fmt.Errorf("%s", i18n.G("You must specify a destination instance name"))
 	}
 
 	// Connect to the source host
@@ -141,7 +141,7 @@ func (c *cmdCopy) copyInstance(conf *config.Config, sourceResource string, destR
 
 	// Confirm that --target is only used with a cluster
 	if c.flagTarget != "" && !dest.IsClustered() {
-		return fmt.Errorf(i18n.G("To use --target, the destination remote must be a cluster"))
+		return fmt.Errorf("%s", i18n.G("To use --target, the destination remote must be a cluster"))
 	}
 
 	// Parse the config overrides
@@ -166,7 +166,7 @@ func (c *cmdCopy) copyInstance(conf *config.Config, sourceResource string, destR
 
 	if instance.IsSnapshot(sourceName) {
 		if instanceOnly {
-			return fmt.Errorf(i18n.G("--instance-only can't be passed when the source is a snapshot"))
+			return fmt.Errorf("%s", i18n.G("--instance-only can't be passed when the source is a snapshot"))
 		}
 
 		// Prepare the instance creation request
@@ -177,7 +177,7 @@ func (c *cmdCopy) copyInstance(conf *config.Config, sourceResource string, destR
 		}
 
 		if c.flagRefresh {
-			return fmt.Errorf(i18n.G("--refresh can only be used with instances"))
+			return fmt.Errorf("%s", i18n.G("--refresh can only be used with instances"))
 		}
 
 		// Copy of a snapshot into a new instance
