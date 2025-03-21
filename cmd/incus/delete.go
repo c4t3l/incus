@@ -50,7 +50,7 @@ func (c *cmdDelete) promptDelete(name string) error {
 	input = strings.TrimSuffix(input, "\n")
 
 	if !slices.Contains([]string{i18n.G("yes")}, strings.ToLower(input)) {
-		return fmt.Errorf(i18n.G("User aborted delete operation"))
+		return fmt.Errorf("%s", i18n.G("User aborted delete operation"))
 	}
 
 	return nil
@@ -106,7 +106,7 @@ func (c *cmdDelete) Run(cmd *cobra.Command, args []string) error {
 
 		if ct.StatusCode != 0 && ct.StatusCode != api.Stopped {
 			if !c.flagForce {
-				return fmt.Errorf(i18n.G("The instance is currently running, stop it first or pass --force"))
+				return fmt.Errorf("%s", i18n.G("The instance is currently running, stop it first or pass --force"))
 			}
 
 			req := api.InstanceStatePut{
