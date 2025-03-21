@@ -186,7 +186,7 @@ func (c *cmdImageCopy) Run(cmd *cobra.Command, args []string) error {
 	}
 
 	if c.flagMode != "pull" && c.flagAutoUpdate {
-		return fmt.Errorf(i18n.G("Auto update is only available in pull mode"))
+		return fmt.Errorf("%s", i18n.G("Auto update is only available in pull mode"))
 	}
 
 	// Parse source remote
@@ -209,7 +209,7 @@ func (c *cmdImageCopy) Run(cmd *cobra.Command, args []string) error {
 	destinationServer := resources[0].server
 
 	if resources[0].name != "" {
-		return fmt.Errorf(i18n.G("Can't provide a name for the target image"))
+		return fmt.Errorf("%s", i18n.G("Can't provide a name for the target image"))
 	}
 
 	// Resolve image type
@@ -332,7 +332,7 @@ func (c *cmdImageDelete) Run(cmd *cobra.Command, args []string) error {
 
 	for _, resource := range resources {
 		if resource.name == "" {
-			return fmt.Errorf(i18n.G("Image identifier missing"))
+			return fmt.Errorf("%s", i18n.G("Image identifier missing"))
 		}
 
 		image := c.image.dereferenceAlias(resource.server, "", resource.name)
@@ -692,9 +692,9 @@ Directory import is only available on Linux and must be performed as root.`))
 func (c *cmdImageImport) packImageDir(path string) (string, error) {
 	// Quick checks.
 	if os.Geteuid() == -1 {
-		return "", fmt.Errorf(i18n.G("Directory import is not available on this platform"))
+		return "", fmt.Errorf("%s", i18n.G("Directory import is not available on this platform"))
 	} else if os.Geteuid() != 0 {
-		return "", fmt.Errorf(i18n.G("Must run as root to import from directory"))
+		return "", fmt.Errorf("%s", i18n.G("Must run as root to import from directory"))
 	}
 
 	outFile, err := os.CreateTemp("", "incus_image_")
@@ -771,7 +771,7 @@ func (c *cmdImageImport) Run(cmd *cobra.Command, args []string) error {
 	}
 
 	if strings.HasPrefix(imageFile, "http://") {
-		return fmt.Errorf(i18n.G("Only https:// is supported for remote image import"))
+		return fmt.Errorf("%s", i18n.G("Only https:// is supported for remote image import"))
 	}
 
 	var createArgs *incus.ImageCreateArgs
@@ -993,7 +993,7 @@ func (c *cmdImageInfo) Run(cmd *cobra.Command, args []string) error {
 	fmt.Printf(i18n.G("Architecture: %s")+"\n", info.Architecture)
 	fmt.Printf(i18n.G("Type: %s")+"\n", imgType)
 	fmt.Printf(i18n.G("Public: %s")+"\n", public)
-	fmt.Printf(i18n.G("Timestamps:") + "\n")
+	fmt.Printf("%s", i18n.G("Timestamps:") + "\n")
 
 	if !info.CreatedAt.IsZero() {
 		fmt.Printf("    "+i18n.G("Created: %s")+"\n", info.CreatedAt.Local().Format(dateLayout))
@@ -1004,13 +1004,13 @@ func (c *cmdImageInfo) Run(cmd *cobra.Command, args []string) error {
 	if !info.ExpiresAt.IsZero() {
 		fmt.Printf("    "+i18n.G("Expires: %s")+"\n", info.ExpiresAt.Local().Format(dateLayout))
 	} else {
-		fmt.Printf("    " + i18n.G("Expires: never") + "\n")
+		fmt.Printf("%s", "    " + i18n.G("Expires: never") + "\n")
 	}
 
 	if !info.LastUsedAt.IsZero() {
 		fmt.Printf("    "+i18n.G("Last used: %s")+"\n", info.LastUsedAt.Local().Format(dateLayout))
 	} else {
-		fmt.Printf("    " + i18n.G("Last used: never") + "\n")
+		fmt.Printf("%s", "    " + i18n.G("Last used: never") + "\n")
 	}
 
 	fmt.Println(i18n.G("Properties:"))
@@ -1038,7 +1038,7 @@ func (c *cmdImageInfo) Run(cmd *cobra.Command, args []string) error {
 	}
 
 	if len(info.Profiles) == 0 {
-		fmt.Printf(i18n.G("Profiles: ") + "[]\n")
+		fmt.Printf("%s", i18n.G("Profiles: ") + "[]\n")
 	} else {
 		fmt.Println(i18n.G("Profiles:"))
 		for _, name := range info.Profiles {
@@ -1448,7 +1448,7 @@ func (c *cmdImageRefresh) Run(cmd *cobra.Command, args []string) error {
 
 	for _, resource := range resources {
 		if resource.name == "" {
-			return fmt.Errorf(i18n.G("Image identifier missing"))
+			return fmt.Errorf("%s", i18n.G("Image identifier missing"))
 		}
 
 		image := c.image.dereferenceAlias(resource.server, "", resource.name)
@@ -1620,7 +1620,7 @@ func (c *cmdImageGetProp) Run(cmd *cobra.Command, args []string) error {
 
 	prop, propFound := info.Properties[args[1]]
 	if !propFound {
-		return fmt.Errorf(i18n.G("Property not found"))
+		return fmt.Errorf("%s", i18n.G("Property not found"))
 	}
 
 	fmt.Println(prop)
