@@ -117,7 +117,7 @@ func (c *cmdConfigTrustAdd) Run(cmd *cobra.Command, args []string) error {
 
 	resource := resources[0]
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("A client name must be provided"))
+		return fmt.Errorf("%s", i18n.G("A client name must be provided"))
 	}
 
 	// Prepare the request.
@@ -307,7 +307,7 @@ func (c *cmdConfigTrustEdit) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing certificate fingerprint"))
+		return fmt.Errorf("%s", i18n.G("Missing certificate fingerprint"))
 	}
 
 	// If stdin isn't a terminal, read text from it
@@ -547,7 +547,7 @@ func (c *cmdConfigTrustList) Run(cmd *cobra.Command, args []string) error {
 	for _, cert := range trust {
 		certBlock, _ := pem.Decode([]byte(cert.Certificate))
 		if certBlock == nil {
-			return fmt.Errorf(i18n.G("Invalid certificate"))
+			return fmt.Errorf("%s", i18n.G("Invalid certificate"))
 		}
 
 		tlsCert, err := x509.ParseCertificate(certBlock.Bytes)
@@ -893,7 +893,7 @@ func (c *cmdConfigTrustShow) Run(cmd *cobra.Command, args []string) error {
 	client := resource.server
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing certificate fingerprint"))
+		return fmt.Errorf("%s", i18n.G("Missing certificate fingerprint"))
 	}
 
 	// Show the certificate configuration
