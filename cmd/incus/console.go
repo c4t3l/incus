@@ -133,7 +133,7 @@ func (c *cmdConsole) console(d incus.InstanceServer, name string) error {
 	// Show the current log if requested.
 	if c.flagShowLog {
 		if c.flagType != "console" {
-			return fmt.Errorf(i18n.G("The --show-log flag is only supported for by 'console' output type"))
+			return fmt.Errorf("%s", i18n.G("The --show-log flag is only supported for by 'console' output type"))
 		}
 
 		console := &incus.InstanceConsoleLogArgs{}
