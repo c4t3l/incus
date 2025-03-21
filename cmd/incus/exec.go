@@ -103,11 +103,11 @@ func (c *cmdExec) Run(cmd *cobra.Command, args []string) error {
 	}
 
 	if c.flagForceInteractive && c.flagForceNonInteractive {
-		return fmt.Errorf(i18n.G("You can't pass -t and -T at the same time"))
+		return fmt.Errorf("%s", i18n.G("You can't pass -t and -T at the same time"))
 	}
 
 	if c.flagMode != "auto" && (c.flagForceInteractive || c.flagForceNonInteractive) {
-		return fmt.Errorf(i18n.G("You can't pass -t or -T at the same time as --mode"))
+		return fmt.Errorf("%s", i18n.G("You can't pass -t or -T at the same time as --mode"))
 	}
 
 	// Connect to the daemon
