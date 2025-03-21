@@ -108,7 +108,7 @@ func (c *cmdImageAliasCreate) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Alias name missing"))
+		return fmt.Errorf("%s", i18n.G("Alias name missing"))
 	}
 
 	// Create the alias
@@ -164,7 +164,7 @@ func (c *cmdImageAliasDelete) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Alias name missing"))
+		return fmt.Errorf("%s", i18n.G("Alias name missing"))
 	}
 
 	// Delete the alias
@@ -406,7 +406,7 @@ func (c *cmdImageAliasRename) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Alias name missing"))
+		return fmt.Errorf("%s", i18n.G("Alias name missing"))
 	}
 
 	// Rename the alias
