@@ -340,7 +340,7 @@ func main() {
 	if err != nil {
 		// Handle non-Linux systems
 		if err == config.ErrNotLinux {
-			fmt.Fprintf(os.Stderr, i18n.G(`This client hasn't been configured to use a remote server yet.
+			fmt.Fprintf(os.Stderr, "%v", i18n.G(`This client hasn't been configured to use a remote server yet.
 As your platform can't run native Linux instances, you must connect to a remote server.
 
 If you already added a remote server, make it the default with "incus remote switch NAME".`)+"\n")
@@ -460,12 +460,12 @@ func (c *cmdGlobal) PreRun(cmd *cobra.Command, args []string) error {
 
 			flush := false
 			if runInit && (cmd.Name() != "init" || cmd.Parent() == nil || cmd.Parent().Name() != "admin") {
-				fmt.Fprintf(os.Stderr, i18n.G("If this is your first time running Incus on this machine, you should also run: incus admin init")+"\n")
+				fmt.Fprintf(os.Stderr, "%v", i18n.G("If this is your first time running Incus on this machine, you should also run: incus admin init")+"\n")
 				flush = true
 			}
 
 			if !slices.Contains([]string{"admin", "create", "launch"}, cmd.Name()) && (cmd.Parent() == nil || cmd.Parent().Name() != "admin") {
-				fmt.Fprintf(os.Stderr, i18n.G(`To start your first container, try: incus launch images:ubuntu/22.04
+				fmt.Fprintf(os.Stderr, "%v", i18n.G(`To start your first container, try: incus launch images:ubuntu/22.04
 Or for a virtual machine: incus launch images:ubuntu/22.04 --vm`)+"\n")
 				flush = true
 			}
@@ -556,7 +556,7 @@ func (c *cmdGlobal) CheckArgs(cmd *cobra.Command, args []string, minArgs int, ma
 			return true, nil
 		}
 
-		return true, fmt.Errorf(i18n.G("Invalid number of arguments"))
+		return true, fmt.Errorf("%s", i18n.G("Invalid number of arguments"))
 	}
 
 	return false, nil
