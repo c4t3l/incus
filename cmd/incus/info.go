@@ -384,7 +384,7 @@ func (c *cmdInfo) remoteInfo(d incus.InstanceServer) error {
 	// Targeting
 	if c.flagTarget != "" {
 		if !d.IsClustered() {
-			return fmt.Errorf(i18n.G("To use --target, the destination remote must be a cluster"))
+			return fmt.Errorf("%s", i18n.G("To use --target, the destination remote must be a cluster"))
 		}
 
 		d = d.UseTarget(c.flagTarget)
@@ -392,7 +392,7 @@ func (c *cmdInfo) remoteInfo(d incus.InstanceServer) error {
 
 	if c.flagResources {
 		if !d.HasExtension("resources_v2") {
-			return fmt.Errorf(i18n.G("The server doesn't implement the newer v2 resources API"))
+			return fmt.Errorf("%s", i18n.G("The server doesn't implement the newer v2 resources API"))
 		}
 
 		resources, err := d.GetServerResources()
@@ -622,7 +622,7 @@ func (c *cmdInfo) remoteInfo(d incus.InstanceServer) error {
 func (c *cmdInfo) instanceInfo(d incus.InstanceServer, remote config.Remote, name string, showLog bool) error {
 	// Quick checks.
 	if c.flagTarget != "" {
-		return fmt.Errorf(i18n.G("--target cannot be used with instances"))
+		return fmt.Errorf("%s", i18n.G("--target cannot be used with instances"))
 	}
 
 	// Get the full instance data.
