@@ -124,7 +124,7 @@ func (c *cmdMove) Run(cmd *cobra.Command, args []string) error {
 	// simply won't work).
 	if sourceRemote == destRemote && c.flagTarget == "" && c.flagStorage == "" && c.flagTargetProject == "" {
 		if c.flagConfig != nil || c.flagDevice != nil || c.flagProfile != nil || c.flagNoProfiles {
-			return fmt.Errorf(i18n.G("Can't override configuration or profiles in local rename"))
+			return fmt.Errorf("%s", i18n.G("Can't override configuration or profiles in local rename"))
 		}
 
 		source, err := conf.GetInstanceServer(sourceRemote)
@@ -247,7 +247,7 @@ func (c *cmdMove) moveInstance(sourceResource string, destResource string, state
 
 	// Make sure we have an instance or snapshot name.
 	if sourceName == "" {
-		return fmt.Errorf(i18n.G("You must specify a source instance name"))
+		return fmt.Errorf("%s", i18n.G("You must specify a source instance name"))
 	}
 
 	// The destination name is optional.
@@ -262,7 +262,7 @@ func (c *cmdMove) moveInstance(sourceResource string, destResource string, state
 	}
 
 	if !source.IsClustered() && c.flagTarget != "" {
-		return fmt.Errorf(i18n.G("--target can only be used with clusters"))
+		return fmt.Errorf("%s", i18n.G("--target can only be used with clusters"))
 	}
 
 	// Set the target if specified.
