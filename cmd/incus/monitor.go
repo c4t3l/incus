@@ -77,7 +77,7 @@ func (c *cmdMonitor) Run(cmd *cobra.Command, args []string) error {
 	}
 
 	if c.flagFormat != "pretty" && c.flagLogLevel != "" {
-		return fmt.Errorf(i18n.G("Log level filtering can only be used with pretty formatting"))
+		return fmt.Errorf("%s", i18n.G("Log level filtering can only be used with pretty formatting"))
 	}
 
 	// Connect to the event source.
