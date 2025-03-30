@@ -157,7 +157,7 @@ func (c *cmdProjectCreate) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing project name"))
+		return fmt.Errorf("%s", i18n.G("Missing project name"))
 	}
 
 	// Create the project
@@ -231,7 +231,7 @@ func (c *cmdProjectDelete) promptConfirmation(name string) error {
 	input = strings.TrimSuffix(input, "\n")
 
 	if !slices.Contains([]string{i18n.G("yes")}, strings.ToLower(input)) {
-		return fmt.Errorf(i18n.G("User aborted delete operation"))
+		return fmt.Errorf("%s", i18n.G("User aborted delete operation"))
 	}
 
 	return nil
@@ -258,7 +258,7 @@ func (c *cmdProjectDelete) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing project name"))
+		return fmt.Errorf("%s", i18n.G("Missing project name"))
 	}
 
 	// Delete the project, server is unable to find the project here.
@@ -360,7 +360,7 @@ func (c *cmdProjectEdit) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing project name"))
+		return fmt.Errorf("%s", i18n.G("Missing project name"))
 	}
 
 	// If stdin isn't a terminal, read text from it
@@ -477,7 +477,7 @@ func (c *cmdProjectGet) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing project name"))
+		return fmt.Errorf("%s", i18n.G("Missing project name"))
 	}
 
 	// Get the configuration key
@@ -766,7 +766,7 @@ func (c *cmdProjectRename) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing project name"))
+		return fmt.Errorf("%s", i18n.G("Missing project name"))
 	}
 
 	// Rename the project
@@ -835,7 +835,7 @@ func (c *cmdProjectSet) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing project name"))
+		return fmt.Errorf("%s", i18n.G("Missing project name"))
 	}
 
 	// Get the project
@@ -963,7 +963,7 @@ func (c *cmdProjectShow) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing project name"))
+		return fmt.Errorf("%s", i18n.G("Missing project name"))
 	}
 
 	// Show the project
@@ -1098,7 +1098,7 @@ func (c *cmdProjectInfo) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing project name"))
+		return fmt.Errorf("%s", i18n.G("Missing project name"))
 	}
 
 	if c.flagShowAccess {
