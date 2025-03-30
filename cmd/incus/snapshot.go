@@ -254,7 +254,7 @@ func (c *cmdSnapshotDelete) promptDelete(instName string, name string) error {
 	input = strings.TrimSuffix(input, "\n")
 
 	if !slices.Contains([]string{i18n.G("yes")}, strings.ToLower(input)) {
-		return fmt.Errorf(i18n.G("User aborted delete operation"))
+		return fmt.Errorf("%s", i18n.G("User aborted delete operation"))
 	}
 
 	return nil
