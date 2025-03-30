@@ -128,7 +128,7 @@ func (c *cmdNetworkIntegrationCreate) Run(cmd *cobra.Command, args []string) err
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network integration name"))
+		return fmt.Errorf("%s", i18n.G("Missing network integration name"))
 	}
 
 	// Create the network integration
@@ -200,7 +200,7 @@ func (c *cmdNetworkIntegrationDelete) Run(cmd *cobra.Command, args []string) err
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network integration name"))
+		return fmt.Errorf("%s", i18n.G("Missing network integration name"))
 	}
 
 	// Delete the network integration
@@ -263,7 +263,7 @@ func (c *cmdNetworkIntegrationEdit) Run(cmd *cobra.Command, args []string) error
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network integration name"))
+		return fmt.Errorf("%s", i18n.G("Missing network integration name"))
 	}
 
 	// If stdin isn't a terminal, read text from it
@@ -374,7 +374,7 @@ func (c *cmdNetworkIntegrationGet) Run(cmd *cobra.Command, args []string) error 
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network integration name"))
+		return fmt.Errorf("%s", i18n.G("Missing network integration name"))
 	}
 
 	// Get the configuration key
@@ -585,7 +585,7 @@ func (c *cmdNetworkIntegrationRename) Run(cmd *cobra.Command, args []string) err
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network integration name"))
+		return fmt.Errorf("%s", i18n.G("Missing network integration name"))
 	}
 
 	// Rename the network integration
@@ -642,7 +642,7 @@ func (c *cmdNetworkIntegrationSet) Run(cmd *cobra.Command, args []string) error 
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network integration name"))
+		return fmt.Errorf("%s", i18n.G("Missing network integration name"))
 	}
 
 	// Get the network integration
@@ -753,7 +753,7 @@ func (c *cmdNetworkIntegrationShow) Run(cmd *cobra.Command, args []string) error
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network integration name"))
+		return fmt.Errorf("%s", i18n.G("Missing network integration name"))
 	}
 
 	// Show the network integration
