@@ -88,11 +88,11 @@ func (c *cmdPublish) Run(cmd *cobra.Command, args []string) error {
 	}
 
 	if cName == "" {
-		return fmt.Errorf(i18n.G("Instance name is mandatory"))
+		return fmt.Errorf("%s", i18n.G("Instance name is mandatory"))
 	}
 
 	if iName != "" {
-		return fmt.Errorf(i18n.G("There is no \"image name\".  Did you want an alias?"))
+		return fmt.Errorf("%s", i18n.G("There is no \"image name\".  Did you want an alias?"))
 	}
 
 	d, err := conf.GetInstanceServer(iRemote)
@@ -119,7 +119,7 @@ func (c *cmdPublish) Run(cmd *cobra.Command, args []string) error {
 
 		if wasRunning {
 			if !c.flagForce {
-				return fmt.Errorf(i18n.G("The instance is currently running. Use --force to have it stopped and restarted"))
+				return fmt.Errorf("%s", i18n.G("The instance is currently running. Use --force to have it stopped and restarted"))
 			}
 
 			if ct.Ephemeral {
@@ -150,7 +150,7 @@ func (c *cmdPublish) Run(cmd *cobra.Command, args []string) error {
 
 			err = op.Wait()
 			if err != nil {
-				return fmt.Errorf(i18n.G("Stopping instance failed!"))
+				return fmt.Errorf("%s", i18n.G("Stopping instance failed!"))
 			}
 
 			// Start the instance back up on exit.
