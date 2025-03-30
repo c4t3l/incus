@@ -205,7 +205,7 @@ func (c *cmdNetworkForwardList) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network name"))
+		return fmt.Errorf("%s", i18n.G("Missing network name"))
 	}
 
 	forwards, err := resource.server.GetNetworkForwards(resource.name)
@@ -285,11 +285,11 @@ func (c *cmdNetworkForwardShow) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network name"))
+		return fmt.Errorf("%s", i18n.G("Missing network name"))
 	}
 
 	if args[1] == "" {
-		return fmt.Errorf(i18n.G("Missing listen address"))
+		return fmt.Errorf("%s", i18n.G("Missing listen address"))
 	}
 
 	client := resource.server
@@ -357,11 +357,11 @@ func (c *cmdNetworkForwardCreate) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network name"))
+		return fmt.Errorf("%s", i18n.G("Missing network name"))
 	}
 
 	if args[1] == "" {
-		return fmt.Errorf(i18n.G("Missing listen address"))
+		return fmt.Errorf("%s", i18n.G("Missing listen address"))
 	}
 
 	// If stdin isn't a terminal, read yaml from it.
@@ -476,11 +476,11 @@ func (c *cmdNetworkForwardGet) Run(cmd *cobra.Command, args []string) error {
 	client := resource.server
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network name"))
+		return fmt.Errorf("%s", i18n.G("Missing network name"))
 	}
 
 	if args[1] == "" {
-		return fmt.Errorf(i18n.G("Missing listen address"))
+		return fmt.Errorf("%s", i18n.G("Missing listen address"))
 	}
 
 	// Get the current config.
@@ -561,11 +561,11 @@ func (c *cmdNetworkForwardSet) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network name"))
+		return fmt.Errorf("%s", i18n.G("Missing network name"))
 	}
 
 	if args[1] == "" {
-		return fmt.Errorf(i18n.G("Missing listen address"))
+		return fmt.Errorf("%s", i18n.G("Missing listen address"))
 	}
 
 	client := resource.server
@@ -736,11 +736,11 @@ func (c *cmdNetworkForwardEdit) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network name"))
+		return fmt.Errorf("%s", i18n.G("Missing network name"))
 	}
 
 	if args[1] == "" {
-		return fmt.Errorf(i18n.G("Missing listen address"))
+		return fmt.Errorf("%s", i18n.G("Missing listen address"))
 	}
 
 	client := resource.server
@@ -867,11 +867,11 @@ func (c *cmdNetworkForwardDelete) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network name"))
+		return fmt.Errorf("%s", i18n.G("Missing network name"))
 	}
 
 	if args[1] == "" {
-		return fmt.Errorf(i18n.G("Missing listen address"))
+		return fmt.Errorf("%s", i18n.G("Missing listen address"))
 	}
 
 	client := resource.server
@@ -962,11 +962,11 @@ func (c *cmdNetworkForwardPort) RunAdd(cmd *cobra.Command, args []string) error 
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network name"))
+		return fmt.Errorf("%s", i18n.G("Missing network name"))
 	}
 
 	if args[1] == "" {
-		return fmt.Errorf(i18n.G("Missing listen address"))
+		return fmt.Errorf("%s", i18n.G("Missing listen address"))
 	}
 
 	client := resource.server
@@ -1045,11 +1045,11 @@ func (c *cmdNetworkForwardPort) RunRemove(cmd *cobra.Command, args []string) err
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing network name"))
+		return fmt.Errorf("%s", i18n.G("Missing network name"))
 	}
 
 	if args[1] == "" {
-		return fmt.Errorf(i18n.G("Missing listen address"))
+		return fmt.Errorf("%s", i18n.G("Missing listen address"))
 	}
 
 	client := resource.server
@@ -1093,7 +1093,7 @@ func (c *cmdNetworkForwardPort) RunRemove(cmd *cobra.Command, args []string) err
 		for _, port := range ports {
 			if isFilterMatch(&port, filterArgs) {
 				if removed && !c.flagRemoveForce {
-					return nil, fmt.Errorf(i18n.G("Multiple ports match. Use --force to remove them all"))
+					return nil, fmt.Errorf("%s", i18n.G("Multiple ports match. Use --force to remove them all"))
 				}
 
 				removed = true
@@ -1104,7 +1104,7 @@ func (c *cmdNetworkForwardPort) RunRemove(cmd *cobra.Command, args []string) err
 		}
 
 		if !removed {
-			return nil, fmt.Errorf(i18n.G("No matching port(s) found"))
+			return nil, fmt.Errorf("%s", i18n.G("No matching port(s) found"))
 		}
 
 		return newPorts, nil
