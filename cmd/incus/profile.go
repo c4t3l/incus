@@ -142,7 +142,7 @@ func (c *cmdProfileAdd) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing instance name"))
+		return fmt.Errorf("%s", i18n.G("Missing instance name"))
 	}
 
 	// Add the profile
@@ -223,7 +223,7 @@ func (c *cmdProfileAssign) Run(cmd *cobra.Command, args []string) error {
 
 	// Assign the profiles
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing instance name"))
+		return fmt.Errorf("%s", i18n.G("Missing instance name"))
 	}
 
 	inst, etag, err := resource.server.GetInstance(resource.name)
@@ -311,7 +311,7 @@ func (c *cmdProfileCopy) Run(cmd *cobra.Command, args []string) error {
 	dest := resources[1]
 
 	if source.name == "" {
-		return fmt.Errorf(i18n.G("Missing source profile name"))
+		return fmt.Errorf("%s", i18n.G("Missing source profile name"))
 	}
 
 	if dest.name == "" {
@@ -410,7 +410,7 @@ func (c *cmdProfileCreate) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing profile name"))
+		return fmt.Errorf("%s", i18n.G("Missing profile name"))
 	}
 
 	// Create the profile
@@ -477,7 +477,7 @@ func (c *cmdProfileDelete) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing profile name"))
+		return fmt.Errorf("%s", i18n.G("Missing profile name"))
 	}
 
 	// Delete the profile
@@ -559,7 +559,7 @@ func (c *cmdProfileEdit) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing profile name"))
+		return fmt.Errorf("%s", i18n.G("Missing profile name"))
 	}
 
 	// If stdin isn't a terminal, read text from it
@@ -677,7 +677,7 @@ func (c *cmdProfileGet) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing profile name"))
+		return fmt.Errorf("%s", i18n.G("Missing profile name"))
 	}
 
 	// Get the configuration key
@@ -814,7 +814,7 @@ func (c *cmdProfileList) Run(cmd *cobra.Command, args []string) error {
 	}
 
 	if c.global.flagProject != "" && c.flagAllProjects {
-		return fmt.Errorf(i18n.G("Can't specify --project with --all-projects"))
+		return fmt.Errorf("%s", i18n.G("Can't specify --project with --all-projects"))
 	}
 
 	// Parse remote
@@ -915,7 +915,7 @@ func (c *cmdProfileRemove) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing instance name"))
+		return fmt.Errorf("%s", i18n.G("Missing instance name"))
 	}
 
 	// Remove the profile
@@ -999,7 +999,7 @@ func (c *cmdProfileRename) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing profile name"))
+		return fmt.Errorf("%s", i18n.G("Missing profile name"))
 	}
 
 	// Rename the profile
@@ -1067,7 +1067,7 @@ func (c *cmdProfileSet) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing profile name"))
+		return fmt.Errorf("%s", i18n.G("Missing profile name"))
 	}
 
 	// Get the profile
@@ -1148,7 +1148,7 @@ func (c *cmdProfileShow) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf(i18n.G("Missing profile name"))
+		return fmt.Errorf("%s", i18n.G("Missing profile name"))
 	}
 
 	// Show the profile
