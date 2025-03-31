@@ -385,7 +385,7 @@ func (c *cmdCreate) create(conf *config.Config, args []string, launch bool) (inc
 
 		if conf.Remotes[iremote].Protocol == "incus" {
 			if imgInfo.Type != "virtual-machine" && c.flagVM {
-				return nil, "", fmt.Errorf(i18n.G("Asked for a VM but image is of type container"))
+				return nil, "", fmt.Errorf("%s", i18n.G("Asked for a VM but image is of type container"))
 			}
 
 			req.Type = api.InstanceType(imgInfo.Type)
