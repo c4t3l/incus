@@ -1429,7 +1429,7 @@ func (c *cmdFileMount) Run(cmd *cobra.Command, args []string) error {
 
 	// Check instance path isn't provided in listener mode.
 	if len(instSpec) > 1 && targetPath == "" {
-		return fmt.Errorf(i18n.G("Instance path cannot be used in SSH SFTP listener mode"))
+		return fmt.Errorf("%s", i18n.G("Instance path cannot be used in SSH SFTP listener mode"))
 	}
 
 	instName := instSpec[0]
@@ -1439,7 +1439,7 @@ func (c *cmdFileMount) Run(cmd *cobra.Command, args []string) error {
 		sshfsPath, err := exec.LookPath("sshfs")
 		if err != nil {
 			// If sshfs command not found, then advise user of the --listen flag.
-			return fmt.Errorf(i18n.G("sshfs not found. Try SSH SFTP mode using the --listen flag"))
+			return fmt.Errorf("%s", i18n.G("sshfs not found. Try SSH SFTP mode using the --listen flag"))
 		}
 
 		// Setup sourcePath with leading / to ensure we reference the instance path from / location.
