@@ -138,7 +138,7 @@ func (c *cmdCreate) create(conf *config.Config, args []string, launch bool) (inc
 
 	if c.flagEmpty {
 		if len(args) > 1 {
-			return nil, "", fmt.Errorf(i18n.G("--empty cannot be combined with an image name"))
+			return nil, "", fmt.Errorf("%s", i18n.G("--empty cannot be combined with an image name"))
 		}
 
 		if len(args) == 0 {
@@ -170,13 +170,13 @@ func (c *cmdCreate) create(conf *config.Config, args []string, launch bool) (inc
 	if !c.global.flagQuiet {
 		if d.HasExtension("instance_create_start") && launch {
 			if name == "" {
-				fmt.Printf(i18n.G("Launching the instance") + "\n")
+				fmt.Printf("%s", i18n.G("Launching the instance") + "\n")
 			} else {
 				fmt.Printf(i18n.G("Launching %s")+"\n", name)
 			}
 		} else {
 			if name == "" {
-				fmt.Printf(i18n.G("Creating the instance") + "\n")
+				fmt.Printf("%s", i18n.G("Creating the instance") + "\n")
 			} else {
 				fmt.Printf(i18n.G("Creating %s")+"\n", name)
 			}
@@ -442,7 +442,7 @@ func (c *cmdCreate) create(conf *config.Config, args []string, launch bool) (inc
 
 	instances, ok := opInfo.Resources["instances"]
 	if !ok || len(instances) == 0 {
-		return nil, "", fmt.Errorf(i18n.G("Didn't get name of new instance from the server"))
+		return nil, "", fmt.Errorf("%s", i18n.G("Didn't get name of new instance from the server"))
 	}
 
 	if len(instances) == 1 && name == "" {
