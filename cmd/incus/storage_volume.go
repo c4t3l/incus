@@ -200,7 +200,7 @@ func (c *cmdStorageVolumeAttach) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	// Attach the volume
@@ -220,7 +220,7 @@ func (c *cmdStorageVolumeAttach) Run(cmd *cobra.Command, args []string) error {
 
 	volName, volType := parseVolume("custom", args[1])
 	if volType != "custom" {
-		return fmt.Errorf("%s%", i18n.G("Only \"custom\" volumes can be attached to instances"))
+		return fmt.Errorf("%s", i18n.G("Only \"custom\" volumes can be attached to instances"))
 	}
 
 	// Prepare the instance's device entry
@@ -291,7 +291,7 @@ func (c *cmdStorageVolumeAttachProfile) Run(cmd *cobra.Command, args []string) e
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	// Attach the volume
@@ -311,7 +311,7 @@ func (c *cmdStorageVolumeAttachProfile) Run(cmd *cobra.Command, args []string) e
 
 	volName, volType := parseVolume("custom", args[1])
 	if volType != "custom" {
-		return fmt.Errorf("%s%", i18n.G("Only \"custom\" volumes can be attached to instances"))
+		return fmt.Errorf("%s", i18n.G("Only \"custom\" volumes can be attached to instances"))
 	}
 
 	// Check if the requested storage volume actually exists
@@ -402,7 +402,7 @@ func (c *cmdStorageVolumeCopy) Run(cmd *cobra.Command, args []string) error {
 	// Source
 	srcResource := resources[0]
 	if srcResource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing source volume name"))
+		return fmt.Errorf("%s", i18n.G("Missing source volume name"))
 	}
 
 	srcServer := srcResource.server
@@ -410,13 +410,13 @@ func (c *cmdStorageVolumeCopy) Run(cmd *cobra.Command, args []string) error {
 
 	// If the source server is standalone then --target cannot be provided.
 	if c.storage.flagTarget != "" && !srcServer.IsClustered() {
-		return fmt.Errorf("%s%", i18n.G("Cannot set --target when source server is not clustered"))
+		return fmt.Errorf("%s", i18n.G("Cannot set --target when source server is not clustered"))
 	}
 
 	// Get source pool and volume name
 	srcVolName, srcVolPool := c.storageVolume.parseVolumeWithPool(srcPath)
 	if srcVolPool == "" {
-		return fmt.Errorf("%s%", i18n.G("No storage pool for source volume specified"))
+		return fmt.Errorf("%s", i18n.G("No storage pool for source volume specified"))
 	}
 
 	if c.storage.flagTarget != "" {
@@ -431,7 +431,7 @@ func (c *cmdStorageVolumeCopy) Run(cmd *cobra.Command, args []string) error {
 	}
 
 	if srcIsSnapshot && c.flagVolumeOnly {
-		return fmt.Errorf("%s%", i18n.G("Cannot set --volume-only when copying a snapshot"))
+		return fmt.Errorf("%s", i18n.G("Cannot set --volume-only when copying a snapshot"))
 	}
 
 	// If the volume is in local storage, set the target to its location (or provide a helpful error
@@ -456,7 +456,7 @@ func (c *cmdStorageVolumeCopy) Run(cmd *cobra.Command, args []string) error {
 	// places the volume on the target member, for remote volumes this does nothing).
 	if c.storageVolume.flagDestinationTarget != "" {
 		if !dstServer.IsClustered() {
-			return fmt.Errorf("%s%", i18n.G("Cannot set --destination-target when destination server is not clustered"))
+			return fmt.Errorf("%s", i18n.G("Cannot set --destination-target when destination server is not clustered"))
 		}
 
 		dstServer = dstServer.UseTarget(c.storageVolume.flagDestinationTarget)
@@ -466,7 +466,7 @@ func (c *cmdStorageVolumeCopy) Run(cmd *cobra.Command, args []string) error {
 	// TODO: Make is possible to run incus storage volume copy pool/vol/snap new-pool/new-vol/new-snap
 	dstVolName, dstVolPool := c.storageVolume.parseVolumeWithPool(dstPath)
 	if dstVolPool == "" {
-		return fmt.Errorf("%s%", i18n.G("No storage pool for target volume specified"))
+		return fmt.Errorf("%s", i18n.G("No storage pool for target volume specified"))
 	}
 
 	// Parse the mode
@@ -618,7 +618,7 @@ func (c *cmdStorageVolumeCreate) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	client := resource.server
@@ -729,7 +729,7 @@ func (c *cmdStorageVolumeDelete) Run(cmd *cobra.Command, args []string) error {
 
 	resource := resources[0]
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	client := resource.server
@@ -806,7 +806,7 @@ func (c *cmdStorageVolumeDetach) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	// Detach storage volumes
@@ -826,7 +826,7 @@ func (c *cmdStorageVolumeDetach) Run(cmd *cobra.Command, args []string) error {
 		for n, d := range inst.Devices {
 			if d["type"] == "disk" && d["pool"] == resource.name && d["source"] == args[1] {
 				if devName != "" {
-					return fmt.Errorf("%s%", i18n.G("More than one device matches, specify the device name"))
+					return fmt.Errorf("%s", i18n.G("More than one device matches, specify the device name"))
 				}
 
 				devName = n
@@ -835,12 +835,12 @@ func (c *cmdStorageVolumeDetach) Run(cmd *cobra.Command, args []string) error {
 	}
 
 	if devName == "" {
-		return fmt.Errorf("%s%", i18n.G("No device found for this storage volume"))
+		return fmt.Errorf("%s", i18n.G("No device found for this storage volume"))
 	}
 
 	_, ok := inst.Devices[devName]
 	if !ok {
-		return fmt.Errorf("%s%", i18n.G("The specified device doesn't exist"))
+		return fmt.Errorf("%s", i18n.G("The specified device doesn't exist"))
 	}
 
 	// Remove the device
@@ -904,7 +904,7 @@ func (c *cmdStorageVolumeDetachProfile) Run(cmd *cobra.Command, args []string) e
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	devName := ""
@@ -923,7 +923,7 @@ func (c *cmdStorageVolumeDetachProfile) Run(cmd *cobra.Command, args []string) e
 		for n, d := range profile.Devices {
 			if d["type"] == "disk" && d["pool"] == resource.name && d["source"] == args[1] {
 				if devName != "" {
-					return fmt.Errorf("%s%", i18n.G("More than one device matches, specify the device name"))
+					return fmt.Errorf("%s", i18n.G("More than one device matches, specify the device name"))
 				}
 
 				devName = n
@@ -932,12 +932,12 @@ func (c *cmdStorageVolumeDetachProfile) Run(cmd *cobra.Command, args []string) e
 	}
 
 	if devName == "" {
-		return fmt.Errorf("%s%", i18n.G("No device found for this storage volume"))
+		return fmt.Errorf("%s", i18n.G("No device found for this storage volume"))
 	}
 
 	_, ok := profile.Devices[devName]
 	if !ok {
-		return fmt.Errorf("%s%", i18n.G("The specified device doesn't exist"))
+		return fmt.Errorf("%s", i18n.G("The specified device doesn't exist"))
 	}
 
 	// Remove the device
@@ -1021,7 +1021,7 @@ func (c *cmdStorageVolumeEdit) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	client := resource.server
@@ -1032,7 +1032,7 @@ func (c *cmdStorageVolumeEdit) Run(cmd *cobra.Command, args []string) error {
 	isSnapshot := false
 	fields := strings.Split(volName, "/")
 	if len(fields) > 2 {
-		return fmt.Errorf("%s%", i18n.G("Invalid snapshot name"))
+		return fmt.Errorf("%s", i18n.G("Invalid snapshot name"))
 	} else if len(fields) > 1 {
 		isSnapshot = true
 	}
@@ -1238,7 +1238,7 @@ func (c *cmdStorageVolumeGet) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	client := resource.server
@@ -1249,7 +1249,7 @@ func (c *cmdStorageVolumeGet) Run(cmd *cobra.Command, args []string) error {
 	isSnapshot := false
 	fields := strings.Split(volName, "/")
 	if len(fields) > 2 {
-		return fmt.Errorf("%s%", i18n.G("Invalid snapshot name"))
+		return fmt.Errorf("%s", i18n.G("Invalid snapshot name"))
 	} else if len(fields) > 1 {
 		isSnapshot = true
 	}
@@ -1366,7 +1366,7 @@ func (c *cmdStorageVolumeInfo) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing storage pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing storage pool name"))
 	}
 
 	client := resource.server
@@ -1377,14 +1377,14 @@ func (c *cmdStorageVolumeInfo) Run(cmd *cobra.Command, args []string) error {
 	isSnapshot := false
 	fields := strings.Split(volName, "/")
 	if len(fields) > 2 {
-		return fmt.Errorf("%s%", i18n.G("Invalid snapshot name"))
+		return fmt.Errorf("%s", i18n.G("Invalid snapshot name"))
 	} else if len(fields) > 1 {
 		isSnapshot = true
 	}
 
 	// Check if syntax matches a snapshot
 	if isSnapshot || volType == "image" {
-		return fmt.Errorf("%s%", i18n.G("Only instance or custom volumes are supported"))
+		return fmt.Errorf("%s", i18n.G("Only instance or custom volumes are supported"))
 	}
 
 	// If a target member was specified, get the volume with the matching
@@ -1617,7 +1617,7 @@ func (c *cmdStorageVolumeList) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	// Process the filters
@@ -1694,7 +1694,7 @@ func (c *cmdStorageVolumeList) parseColumns(clustered bool) ([]volumeColumn, err
 	} else {
 		if c.flagColumns != c.defaultColumns {
 			if strings.ContainsAny(c.flagColumns, "L") {
-				return nil, fmt.Errorf("%s%", i18n.G("Can't specify column L when not clustered"))
+				return nil, fmt.Errorf("%s", i18n.G("Can't specify column L when not clustered"))
 			}
 		}
 		c.flagColumns = strings.Replace(c.flagColumns, "L", "", -1)
@@ -1825,7 +1825,7 @@ func (c *cmdStorageVolumeMove) Run(cmd *cobra.Command, args []string) error {
 	// Source
 	srcResource := resources[0]
 	if srcResource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing source volume name"))
+		return fmt.Errorf("%s", i18n.G("Missing source volume name"))
 	}
 
 	srcRemote := srcResource.remote
@@ -1834,7 +1834,7 @@ func (c *cmdStorageVolumeMove) Run(cmd *cobra.Command, args []string) error {
 	// Get source pool and volume name
 	srcVolName, srcVolPool := c.storageVolume.parseVolumeWithPool(srcPath)
 	if srcVolPool == "" {
-		return fmt.Errorf("%s%", i18n.G("No storage pool for source volume specified"))
+		return fmt.Errorf("%s", i18n.G("No storage pool for source volume specified"))
 	}
 
 	// Destination
@@ -1845,7 +1845,7 @@ func (c *cmdStorageVolumeMove) Run(cmd *cobra.Command, args []string) error {
 	// Get target pool and volume name
 	dstVolName, dstVolPool := c.storageVolume.parseVolumeWithPool(dstPath)
 	if dstVolPool == "" {
-		return fmt.Errorf("%s%", i18n.G("No storage pool for target volume specified"))
+		return fmt.Errorf("%s", i18n.G("No storage pool for target volume specified"))
 	}
 
 	// Rename volume if both remotes and pools of source and target are equal
@@ -1915,7 +1915,7 @@ func (c *cmdStorageVolumeRename) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	client := resource.server
@@ -2009,7 +2009,7 @@ func (c *cmdStorageVolumeSet) Run(cmd *cobra.Command, args []string) error {
 
 	resource := resources[0]
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	client := resource.server
@@ -2026,7 +2026,7 @@ func (c *cmdStorageVolumeSet) Run(cmd *cobra.Command, args []string) error {
 	isSnapshot := false
 	fields := strings.Split(volName, "/")
 	if len(fields) > 2 {
-		return fmt.Errorf("%s%", i18n.G("Invalid snapshot name"))
+		return fmt.Errorf("%s", i18n.G("Invalid snapshot name"))
 	} else if len(fields) > 1 {
 		isSnapshot = true
 	}
@@ -2061,7 +2061,7 @@ func (c *cmdStorageVolumeSet) Run(cmd *cobra.Command, args []string) error {
 			return nil
 		}
 
-		return fmt.Errorf("%s%", i18n.G("Snapshots are read-only and can't have their configuration changed"))
+		return fmt.Errorf("%s", i18n.G("Snapshots are read-only and can't have their configuration changed"))
 	}
 
 	// If a target was specified, create the volume on the given member.
@@ -2171,7 +2171,7 @@ func (c *cmdStorageVolumeShow) Run(cmd *cobra.Command, args []string) error {
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	client := resource.server
@@ -2394,7 +2394,7 @@ func (c *cmdStorageVolumeSnapshotCreate) Run(cmd *cobra.Command, args []string) 
 
 	resource := resources[0]
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	client := resource.server
@@ -2407,7 +2407,7 @@ func (c *cmdStorageVolumeSnapshotCreate) Run(cmd *cobra.Command, args []string) 
 	// Parse the input
 	volName, volType := parseVolume("custom", args[1])
 	if volType != "custom" {
-		return fmt.Errorf("%s%", i18n.G("Only \"custom\" volumes can be snapshotted"))
+		return fmt.Errorf("%s", i18n.G("Only \"custom\" volumes can be snapshotted"))
 	}
 
 	// Check if the requested storage volume actually exists
@@ -2509,7 +2509,7 @@ func (c *cmdStorageVolumeSnapshotDelete) Run(cmd *cobra.Command, args []string) 
 
 	resource := resources[0]
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	client := resource.server
@@ -2614,7 +2614,7 @@ func (c *cmdStorageVolumeSnapshotList) Run(cmd *cobra.Command, args []string) er
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	// Parse the input
@@ -2767,7 +2767,7 @@ func (c *cmdStorageVolumeSnapshotRename) Run(cmd *cobra.Command, args []string) 
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	client := resource.server
@@ -2852,7 +2852,7 @@ func (c *cmdStorageVolumeSnapshotRestore) Run(cmd *cobra.Command, args []string)
 
 	resource := resources[0]
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	client := resource.server
@@ -2929,7 +2929,7 @@ func (c *cmdStorageVolumeSnapshotShow) Run(cmd *cobra.Command, args []string) er
 	resource := resources[0]
 
 	if resource.name == "" {
-		return fmt.Errorf("%s%", i18n.G("Missing pool name"))
+		return fmt.Errorf("%s", i18n.G("Missing pool name"))
 	}
 
 	client := resource.server
@@ -2939,7 +2939,7 @@ func (c *cmdStorageVolumeSnapshotShow) Run(cmd *cobra.Command, args []string) er
 
 	fields := strings.Split(volName, "/")
 	if len(fields) != 2 {
-		return fmt.Errorf("%s%", i18n.G("Invalid snapshot name"))
+		return fmt.Errorf("%s", i18n.G("Invalid snapshot name"))
 	}
 
 	// If a target member was specified, get the volume with the matching
@@ -3033,7 +3033,7 @@ func (c *cmdStorageVolumeExport) Run(cmd *cobra.Command, args []string) error {
 
 	volName, volType := parseVolume("custom", args[1])
 	if volType != "custom" {
-		return fmt.Errorf("%s%", i18n.G("Only \"custom\" volumes can be exported"))
+		return fmt.Errorf("%s", i18n.G("Only \"custom\" volumes can be exported"))
 	}
 
 	req := api.StorageVolumeBackupsPost{
@@ -3219,12 +3219,12 @@ func (c *cmdStorageVolumeImport) Run(cmd *cobra.Command, args []string) error {
 	} else {
 		// Validate type flag
 		if !slices.Contains([]string{"backup", "iso"}, c.flagType) {
-			return fmt.Errorf("%s%", i18n.G("Import type needs to be \"backup\" or \"iso\""))
+			return fmt.Errorf("%s", i18n.G("Import type needs to be \"backup\" or \"iso\""))
 		}
 	}
 
 	if c.flagType == "iso" && volName == "" {
-		return fmt.Errorf("%s%", i18n.G("Importing ISO images requires a volume name to be set"))
+		return fmt.Errorf("%s", i18n.G("Importing ISO images requires a volume name to be set"))
 	}
 
 	progress := cli.ProgressRenderer{
