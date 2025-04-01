@@ -473,7 +473,7 @@ func (c *cmdCreate) checkNetwork(d incus.InstanceServer, name string) {
 		}
 	}
 
-	fmt.Fprintf(os.Stderr, "\n"+i18n.G("The instance you are starting doesn't have any network attached to it.")+"\n")
-	fmt.Fprintf(os.Stderr, "  "+i18n.G("To create a new network, use: incus network create")+"\n")
-	fmt.Fprintf(os.Stderr, "  "+i18n.G("To attach a network to an instance, use: incus network attach")+"\n\n")
+	fmt.Fprintf(os.Stderr, "\n"+ "%s", i18n.G("The instance you are starting doesn't have any network attached to it.")+"\n")
+	fmt.Fprintf(os.Stderr, "  "+ "%s", i18n.G("To create a new network, use: incus network create")+"\n")
+	fmt.Fprintf(os.Stderr, "  "+ "%s", i18n.G("To attach a network to an instance, use: incus network attach")+"\n\n")
 }
