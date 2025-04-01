@@ -174,7 +174,7 @@ func (c *cmdRemoteAdd) runToken(server string, token string, rawToken *api.Certi
 	conf := c.global.conf
 
 	if !conf.HasClientCertificate() {
-		fmt.Fprintf(os.Stderr, i18n.G("Generating a client certificate. This may take a minute...")+"\n")
+		fmt.Fprintf(os.Stderr, "%s", i18n.G("Generating a client certificate. This may take a minute...")+"\n")
 		err := conf.GenerateClientCertificate()
 		if err != nil {
 			return err
@@ -197,7 +197,7 @@ func (c *cmdRemoteAdd) runToken(server string, token string, rawToken *api.Certi
 	}
 
 	fmt.Println(i18n.G("All server addresses are unavailable"))
-	fmt.Printf(i18n.G("Please provide an alternate server address (empty to abort):") + " ")
+	fmt.Printf("%s", i18n.G("Please provide an alternate server address (empty to abort):") + " ")
 
 	buf := bufio.NewReader(os.Stdin)
 	line, _, err := buf.ReadLine()
@@ -409,7 +409,7 @@ func (c *cmdRemoteAdd) Run(cmd *cobra.Command, args []string) error {
 	// adding the remote server.
 	if rScheme != "unix" && !c.flagPublic && (c.flagAuthType == api.AuthenticationMethodTLS || c.flagAuthType == "") {
 		if !conf.HasClientCertificate() {
-			fmt.Fprintf(os.Stderr, i18n.G("Generating a client certificate. This may take a minute...")+"\n")
+			fmt.Fprintf(os.Stderr, "%s", i18n.G("Generating a client certificate. This may take a minute...")+"\n")
 			err = conf.GenerateClientCertificate()
 			if err != nil {
 				return err
@@ -464,7 +464,7 @@ func (c *cmdRemoteAdd) Run(cmd *cobra.Command, args []string) error {
 			digest := localtls.CertFingerprint(certificate)
 
 			fmt.Printf(i18n.G("Certificate fingerprint: %s")+"\n", digest)
-			fmt.Printf(i18n.G("ok (y/n/[fingerprint])?") + " ")
+			fmt.Printf("%s", i18n.G("ok (y/n/[fingerprint])?") + " ")
 			buf := bufio.NewReader(os.Stdin)
 			line, _, err := buf.ReadLine()
 			if err != nil {
@@ -660,7 +660,7 @@ func (c *cmdRemoteGenerateCertificate) Run(cmd *cobra.Command, args []string) er
 
 	// Generate the certificate.
 	if !c.global.flagQuiet {
-		fmt.Fprintf(os.Stderr, i18n.G("Generating a client certificate. This may take a minute...")+"\n")
+		fmt.Fprintf(os.Stderr, "%s", i18n.G("Generating a client certificate. This may take a minute...")+"\n")
 	}
 
 	err = conf.GenerateClientCertificate()
