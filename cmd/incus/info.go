@@ -134,7 +134,7 @@ func (c *cmdInfo) renderGPU(gpu api.ResourcesGPUCard, prefix string, initial boo
 	}
 
 	if gpu.DRM != nil {
-		fmt.Printf(prefix + i18n.G("DRM:") + "\n")
+		fmt.Printf(prefix + "%s", i18n.G("DRM:") + "\n")
 		fmt.Printf(prefix+"  "+i18n.G("ID: %d")+"\n", gpu.DRM.ID)
 
 		if gpu.DRM.CardName != "" {
@@ -151,7 +151,7 @@ func (c *cmdInfo) renderGPU(gpu api.ResourcesGPUCard, prefix string, initial boo
 	}
 
 	if gpu.Nvidia != nil {
-		fmt.Printf(prefix + i18n.G("NVIDIA information:") + "\n")
+		fmt.Printf(prefix + "%s", i18n.G("NVIDIA information:") + "\n")
 		fmt.Printf(prefix+"  "+i18n.G("Architecture: %v")+"\n", gpu.Nvidia.Architecture)
 		fmt.Printf(prefix+"  "+i18n.G("Brand: %v")+"\n", gpu.Nvidia.Brand)
 		fmt.Printf(prefix+"  "+i18n.G("Model: %v")+"\n", gpu.Nvidia.Model)
